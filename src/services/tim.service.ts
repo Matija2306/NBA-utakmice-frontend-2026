@@ -1,4 +1,3 @@
-import type { PageModel } from "@/models/page.model"
 import type { TimModel } from "@/models/tim.model"
 import axios from "axios"
 

@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { TimService } from './services/tim.service';
 import MainLayout from './components/MainLayout.vue';
 
-// Promenjen tip u 'any' da TypeScript ne pravi problem sa Page objektom
+
 const timoviData = ref<any>(null);
 const searchInput = ref('');
 const isLoading = ref(false);
@@ -97,7 +97,7 @@ onMounted(() => retrieveData());
 </template>
 
 <style scoped>
-/* --- SEARCH DIZAJN --- */
+
 .search-wrapper {
     position: relative;
     display: flex;
@@ -134,7 +134,7 @@ onMounted(() => retrieveData());
     transform: scale(1.05);
 }
 
-/* --- KARTICE DIZAJN --- */
+
 .nba-card {
     background: #1e1e1e;
     border-radius: 15px;
@@ -149,7 +149,7 @@ onMounted(() => retrieveData());
     box-shadow: 0 10px 25px rgba(13, 110, 253, 0.2);
 }
 .card-img-wrapper {
-    background: #fff; /* NBA logotipovi najbolje izgledaju na beloj pozadini */
+    background: #fff;
     padding: 20px;
     height: 180px;
     display: flex;
@@ -180,7 +180,7 @@ onMounted(() => retrieveData());
     color: #eee;
 }
 
-/* --- PAGINACIJA DIZAJN --- */
+
 .custom-pagination {
     display: flex;
     align-items: center;

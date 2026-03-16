@@ -21,7 +21,7 @@ const router = createRouter({
       meta: { title: 'Početna' }
     },
     {
-      path: '/details',
+      path: '/details/:id',
       component: TimDetails,
       meta: { title: 'Detelji o timu' }
     },

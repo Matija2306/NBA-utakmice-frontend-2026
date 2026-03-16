@@ -1,12 +1,18 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router'; // DODATO
 import { TimService } from './services/tim.service';
 import MainLayout from './components/MainLayout.vue';
 
-
+const router = useRouter(); // DODATO
 const timoviData = ref<any>(null);
 const searchInput = ref('');
 const isLoading = ref(false);
+
+
+const goToDetails = (id: number) => {
+    router.push(`/details/${id}`);
+};
 
 async function retrieveData(page = 0) {
     isLoading.value = true;
@@ -21,7 +27,6 @@ async function retrieveData(page = 0) {
     }
 }
 
-// Navigacione funkcije
 const first = () => { if (!timoviData.value?.first) retrieveData(0); }
 const prev = () => { if (!timoviData.value?.first) retrieveData(timoviData.value.number - 1); }
 const next = () => { if (!timoviData.value?.last) retrieveData(timoviData.value.number + 1); }
@@ -34,7 +39,6 @@ onMounted(() => retrieveData());
 <template>
     <MainLayout>
         <div class="container mt-4">
-            
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-8 col-lg-6">
                     <div class="search-wrapper">
@@ -56,7 +60,13 @@ onMounted(() => retrieveData());
             </div>
 
             <div v-else id="content" class="d-flex flex-wrap gap-4 justify-content-center">
-                <div v-for="tim in timoviData?.content" :key="tim.id" class="nba-card">
+                <div 
+                    v-for="tim in timoviData?.content" 
+                    :key="tim.id" 
+                    class="nba-card" 
+                    @click="goToDetails(tim.id)"
+                    style="cursor: pointer;" 
+                >
                     <div class="card-img-wrapper">
                         <img :src="tim.logoUrl" :alt="tim.naziv" class="card-img-top logo">
                     </div>
@@ -79,11 +89,9 @@ onMounted(() => retrieveData());
                     <button class="pg-btn" :disabled="timoviData.first" @click="prev">
                         <i class="fa-solid fa-angle-left"></i>
                     </button>
-                    
                     <span class="pg-info">
                         Stranica <strong>{{ timoviData.number + 1 }}</strong> od {{ timoviData.totalPages }}
                     </span>
-
                     <button class="pg-btn" :disabled="timoviData.last" @click="next">
                         <i class="fa-solid fa-angle-right"></i>
                     </button>

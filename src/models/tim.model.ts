@@ -1,8 +1,9 @@
 export interface TimModel{
 
-    id: number
-    naziv: string
-    skracenica: string
-    logoUrl: string
+    id: number,
+    naziv: string,
+    skracenica: string,
+    logoUrl: string,
+    opis: string
 
 }
